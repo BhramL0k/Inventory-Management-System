@@ -20,7 +20,6 @@ def refresh(db,mycursor):
     mycursor1=db1.cursor()
     return db1,mycursor1
 
-
 '''FUNCTIONS'''
 
 def shopList():
@@ -323,7 +322,7 @@ def customerTransactionHistory():
             for x in temp:
                 print(str(cnt)+".")
                 cnt+=1
-                print("TransNo:{}  OrderNo:{}  ItemName:{}  Quantity:{}  Status:{}".format(x[0],x[1],x[2],x[3],x[4]))
+                print("TransNo:{}  OrderNo:{}  ItemName:{} Amount:{} Quantity:{}  Status:{}".format(x[0],x[1],x[2],x[3],x[4],x[5]))
             input("Press Enter to continue....")
         
         elif choice2==2:
@@ -336,7 +335,7 @@ def customerTransactionHistory():
             for x in temp:
                 print(str(cnt)+".")
                 cnt+=1
-                print("TransNo:{}  OrderNo:{}  ItemName:{}  Quantity:{}  Status:{}".format(x[0],x[1],x[2],x[3],x[4]))
+                print("TransNo:{}  OrderNo:{}  ItemName:{} Amount:{} Quantity:{}  Status:{}".format(x[0],x[1],x[2],x[3],x[4],x[5]))
             input("Press Enter to continue....")
         
         elif choice2==3:
@@ -349,14 +348,14 @@ def customerTransactionHistory():
                 print("Invalid transaction no.")
             else:
                 for x in trans:
-                        print("TransNo:{}  OrderNo:{}  ItemName:{}  Quantity:{}  Status:{}".format(x[0],x[1],x[2],x[3],x[4]))
+                    print("TransNo:{}  OrderNo:{}  ItemName:{} Amount:{} Quantity:{}  Status:{}".format(x[0],x[1],x[2],x[3],x[4],x[5]))
             input("Press Enter key to continue......")
         
         elif choice2==4:
             mycursor.execute("select * from transactions")
             temp=mycursor.fetchall()
             for x in temp:
-                print("TransNo:{}  OrderNo:{}  ItemName:{}  Quantity:{}  Status:{}".format(x[0],x[1],x[2],x[3],x[4]))
+                print("TransNo:{}  OrderNo:{}  ItemName:{} Amount:{} Quantity:{}  Status:{}".format(x[0],x[1],x[2],x[3],x[4],x[5]))
             input("Press Enter key to continue......")
         
         elif choice2==5:
@@ -620,12 +619,15 @@ def hireAndFire():
     while(choice2 != 4):
         clear()
         loadClean(25,0.004)
+        clear()
+        print("============== HIRE & FIRE =================")
         print("1.Hire")
         print("2.Fire")
         print("3.Employee List")
         print("4.Go Back")
         cho=int(input("Enter your choice:"))
         if cho==1:
+            clear()
             print("********HIRE MENU*********")
             us=input("Enter employee username:")
             ps=input("Enter employee password:")
@@ -642,6 +644,7 @@ def hireAndFire():
             input("Press Enter to continue..")
             db.commit()
         elif cho==2:
+            clear()
             print("********FIRE MENU*********")
             id=0
             while id==0:
