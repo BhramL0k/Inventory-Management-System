@@ -1,10 +1,10 @@
 import time
 
 def loadFast(x,y):
-    for x in range (0,7):  
-        b = "Loading" + "." * x
+    for i in range (0,x):  
+        b = "Loading" + "." * i
         print (b, end="\r")
-        time.sleep(0.4)
+        time.sleep(y)
 
 def loadClean(x,y):
     for i in range (0,x):  

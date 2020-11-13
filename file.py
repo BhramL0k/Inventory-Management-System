@@ -221,10 +221,44 @@ def viewInventory():
     mycursor.execute("select * from inventory")
     inv=mycursor.fetchall()
     print("The list of the items is:")
+    items=[]
     for x in inv:
         print("ItemId: "+str(x[0])+"  ItemName: "+str(x[1])+"  ItemQuantity: "+str(x[2])+"  ItemPrice:"+str(x[3]))
-    print("The total number of items is "+str(len(inv)))
-    input("Press enter to continue...\n\n")
+        items.append(int(x[0]))
+    
+    if len(inv)==0:
+        print("The inventory in empty")
+        loadFast(5,0.5)
+        return
+    else:
+        print("The total number of items is "+str(len(inv)))
+        loadFast(5,0.5)
+    
+    print("========UPDATE PRICE========")
+    print("1.Update price")
+    print("2.Go bacK")
+    choice=int(input("Enter your choice:"))
+    if(choice==1):
+        itemNum=-1
+        while itemNum not in items:
+            itemNum=int(input("Input the item number:"))
+            if itemNum not in items:
+                print("The items is not present in the invenotory.Try again")
+        price=int(input("Enter the updated price of the item."))
+        mycursor.execute("select * from inventory where itemId="+str(itemNum))
+        temp=mycursor.fetchall()
+        dx="update inventory set price=%s where ItemId=%s"
+        dy=(price,itemNum,)
+        mycursor.execute(dx,dy)
+        print("The price of {} with itemid {} has been updated from {} to {}.".format(temp[0][1],temp[0][0],temp[0][3],price))
+        db.commit()
+        input("Press Enter to continue.")
+    else:
+        print("Going Back....")
+        loadClean(20,0.04)
+        return
+    
+
 
 def viewAccountBalance():
     clear()
