@@ -234,7 +234,7 @@ def viewInventory():
         print("The total number of items is "+str(len(inv)))
         loadFast(5,0.5)
     
-    print("========UPDATE PRICE========")
+    print("\n========UPDATE PRICE========")
     print("1.Update price")
     print("2.Go bacK")
     choice=int(input("Enter your choice:"))
